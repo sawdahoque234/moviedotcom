@@ -8,13 +8,10 @@ function Movies() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loader, setLoader] = useState(true);
-  const [year, setYear] = useState(null);
   const [allPages, setAllPAges] = useState(10);
 
   useEffect(() => {
-    fetch(
-      `https://movie-task.vercel.app/api/popular?&page=${page}&release_date=${year}`
-    )
+    fetch(`https://movie-task.vercel.app/api/popular?&page=${page}`)
       .then((res) => res.json())
       .then((movieData) => {
         setMovies(movieData.data.results);
@@ -23,7 +20,7 @@ function Movies() {
     setTimeout(() => {
       setLoader(false);
     }, 4000);
-  }, [page, year]);
+  }, [page]);
 
   function handlePageChange(page) {
     setPage(page.selected + 1);
@@ -35,7 +32,7 @@ function Movies() {
         <Lodaing />
       ) : (
         <div className="catalogue">
-          <Form setYear={setYear} />
+          <Form />
           <div className="catalogue-list">
             {movies.map((movie) => (
               <NavLink

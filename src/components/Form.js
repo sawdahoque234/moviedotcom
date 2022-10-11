@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-function Form({ setYear }) {
+function Form() {
   const [movieSearch, setMovieSearch] = useState([]);
   const [query, setQuery] = useState("");
-  const [yearArray, setYearArray] = useState([]);
 
   useEffect(() => {
     getMoviesByQuery();
